@@ -1,0 +1,20 @@
+{
+  "name": "covid19caribbean-scripts",
+  "version": "1.0.0",
+  "description": "A repository for automation scripts developed specifically for the covid19caribbean.com web project.",
+  "main": "src/lambdas/syncCovid19Stats.js",
+  "repository": "git@github.com:bajetech/covid19caribbean-scripts.git",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Owan Hunte <owanh@hotmail.com>",
+  "private": true,
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
+}
