@@ -82,12 +82,14 @@ exports.DataUpdater = class DataUpdater {
           );
         }
 
-        let isoCodes = [];
+        let countriesTracked = [];
         caribbeanCountries.forEach((element) => {
-          isoCodes.push(element.isoCode);
+          countriesTracked.push({
+            country: element.name,
+            iso2: element.isoCode,
+            iso3: element.unCode,
+          });
         });
-
-        const countriesTracked = isoCodes.join(",");
 
         await tsCollection.findOneAndUpdate(
           { type: "caribbean", status: "today" },
