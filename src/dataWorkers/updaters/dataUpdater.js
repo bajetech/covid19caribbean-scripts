@@ -1,3 +1,6 @@
+const caribbeanCountries = require("../fetchers/NovelCovidAPI/countries")
+  .caribbeanCountries;
+
 exports.DataUpdater = class DataUpdater {
   constructor() {
     this.collections = {
@@ -79,15 +82,22 @@ exports.DataUpdater = class DataUpdater {
           );
         }
 
+        let isoCodes = [];
+        caribbeanCountries.forEach((element) => {
+          isoCodes.push(element.isoCode);
+        });
+
+        const countriesTracked = isoCodes.join(",");
+
         await tsCollection.findOneAndUpdate(
           { type: "caribbean", status: "today" },
-          { $set: { ...todayCaribbeanTotalStats } },
+          { $set: { ...todayCaribbeanTotalStats, countriesTracked } },
           { upsert: true }
         );
 
         await tsCollection.findOneAndUpdate(
           { type: "caribbean", status: "yesterday" },
-          { $set: { ...yesterdayCaribbeanTotalStats } },
+          { $set: { ...yesterdayCaribbeanTotalStats, countriesTracked } },
           { upsert: true }
         );
       } catch (error) {
