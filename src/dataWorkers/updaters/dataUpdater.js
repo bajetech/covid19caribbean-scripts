@@ -14,13 +14,13 @@ exports.DataUpdater = class DataUpdater {
 
       try {
         await collection.findOneAndUpdate(
-          { focus: "world", status: "today" },
+          { type: "world", status: "today" },
           { $set: { ...todayStats } },
           { upsert: true }
         );
 
         await collection.findOneAndUpdate(
-          { focus: "world", status: "yesterday" },
+          { type: "world", status: "yesterday" },
           { $set: { ...yesterdayStats } },
           { upsert: true }
         );
@@ -80,13 +80,13 @@ exports.DataUpdater = class DataUpdater {
         }
 
         await tsCollection.findOneAndUpdate(
-          { focus: "caribbean", status: "today" },
+          { type: "caribbean", status: "today" },
           { $set: { ...todayCaribbeanTotalStats } },
           { upsert: true }
         );
 
         await tsCollection.findOneAndUpdate(
-          { focus: "caribbean", status: "yesterday" },
+          { type: "caribbean", status: "yesterday" },
           { $set: { ...yesterdayCaribbeanTotalStats } },
           { upsert: true }
         );
